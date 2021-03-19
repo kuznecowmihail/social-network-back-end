@@ -11,12 +11,9 @@ var getMessagesHandler = function (req, res) {
     var dialogMessages = messages_1.default
         .filter(function (message) { return message.dialogId === dialogid; })
         .map(function (message) {
-        if (message.userId === 0) {
-            message.direction = 'me';
-        }
-        else {
-            message.direction = 'companion';
-        }
+        message.direction = message.userId === 0
+            ? 'me'
+            : 'companion';
         return message;
     });
     var obj = { messages: dialogMessages };

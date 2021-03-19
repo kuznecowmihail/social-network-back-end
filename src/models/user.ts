@@ -2,7 +2,7 @@ export default class User {
     id: Number;
     name: string;
     followed: Boolean;
-    img: string;
+    img: string | null;
 
     constructor(id: Number, name: string, followed: Boolean, img: string) {
         this.id = id;

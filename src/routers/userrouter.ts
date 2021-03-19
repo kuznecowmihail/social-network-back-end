@@ -1,14 +1,20 @@
 import express from 'express';
 import users from '../data/users';
+import posts from '../data/posts';
 
 const getUserHandler = (req: express.Request, res: express.Response) => {
     let userId = parseInt(req.params && req.params.userId);
-    let filterUsers = users.filter(item => {
-        return item.id === userId;
+    let filterUsers = users.filter(user => {
+        return user.id === userId;
     })
+    let user = filterUsers[0];
+    let userPosts = posts.filter(post => post.userId === (user && user.id));
     res.setHeader('Access-Control-Allow-Origin', '*');
-    let obj = {user: filterUsers.length && filterUsers[0]};
-    console.log('get user');
+    let obj = {
+        info: filterUsers.length && filterUsers[0],
+        posts: userPosts
+    };
+    console.log('get info');
     console.log(obj);
     res.send(obj);
 };

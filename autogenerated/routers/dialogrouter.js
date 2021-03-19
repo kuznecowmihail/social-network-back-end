@@ -12,7 +12,7 @@ var getDialogsHandler = function (req, res) {
     var customDialogs = dialogs_1.default.map(function (item) {
         var id = item.id;
         var dialogMessages = messages_1.default.filter(function (message) { return message.dialogId === id; });
-        var lastMessage = dialogMessages[dialogMessages.length - 1].message;
+        var lastMessage = dialogMessages.length && dialogMessages[dialogMessages.length - 1].message;
         var userId = dialogMessages.filter(function (message) { return message.userId !== 0; })[0].userId;
         var user = users_1.default.filter(function (user) { return user.id === userId; })[0];
         return {

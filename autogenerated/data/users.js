@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var user_1 = __importDefault(require("../models/user"));
 var users = [
+    new user_1.default(0, "<ike>", true, ''),
     new user_1.default(1, "Leha", true, "https://sun2.beltelecom-by-minsk.userapi.com/s/v1/if2/2oh57aD0oSjrv847hVcutBzqQTX96-4lgItMXtTcUu19mWty9vrcIhvDpVF6kk-DWV4unqMmatkM1Y0DUpXwUy6-.jpg?size=100x0&quality=96&crop=66,66,368,368&ava=1"),
     new user_1.default(2, "Egor", true, "https://sun2.beltelecom-by-minsk.userapi.com/s/v1/if1/RBOLRnjbWKM34H6UJfuqGxm9fKuOXnlyQKZjv2do50G0zut16xF1V6LXXii_lAHj-PzcSRgO.jpg?size=100x0&quality=96&crop=5,7,1067,1067&ava=1"),
     new user_1.default(3, "Roman", true, "https://sun1.beltelecom-by-minsk.userapi.com/s/v1/ig2/uRptmUr11NuWiJmmn9klurCOcLtW1G_aITyoNy_a_H1j59DaywgR8-KodEkMKYLlET0MNG0v_vdb55EJbrqhAmyd.jpg?size=100x0&quality=96&crop=529,88,1571,1571&ava=1"),

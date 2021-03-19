@@ -2,6 +2,12 @@ import User from '../models/user';
 
 let users = [
     new User(
+        0,
+        "<ike>",
+        true,
+        ''
+    ),
+    new User(
         1,
         "Leha",
         true,

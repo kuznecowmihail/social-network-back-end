@@ -1,11 +1,13 @@
 class Post {
-    content: string;
+    id: Number;
+    text: string;
     userId: Number;
-    likeCount: Number;
-    constructor(content: string, userId: Number, likeCount: Number) {
-        this.content = content;
+    likesCount: Number;
+    constructor(id: Number, text: string, userId: Number, likesCount: Number) {
+        this.id = id;
+        this.text = text;
         this.userId = userId;
-        this.likeCount = likeCount;
+        this.likesCount = likesCount;
     }
 }
 export default Post;
