@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var messages_1 = __importDefault(require("../data/messages"));
+var response_1 = __importDefault(require("../models/response"));
 var getMessagesHandler = function (req, res) {
     var dialogid = parseInt(req.params && req.params.dialogid);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,10 +17,10 @@ var getMessagesHandler = function (req, res) {
             : 'companion';
         return message;
     });
-    var obj = { messages: dialogMessages };
+    var resp = new response_1.default(200, { messages: dialogMessages });
     console.log('get messages');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 var router = express_1.default.Router();
 router.get('/:dialogid', getMessagesHandler);

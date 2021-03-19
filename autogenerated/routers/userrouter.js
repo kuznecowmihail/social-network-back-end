@@ -5,22 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var users_1 = __importDefault(require("../data/users"));
-var posts_1 = __importDefault(require("../data/posts"));
+var response_1 = __importDefault(require("../models/response"));
 var getUserHandler = function (req, res) {
     var userId = parseInt(req.params && req.params.userId);
     var filterUsers = users_1.default.filter(function (user) {
         return user.id === userId;
     });
-    var user = filterUsers[0];
-    var userPosts = posts_1.default.filter(function (post) { return post.userId === (user && user.id); });
     res.setHeader('Access-Control-Allow-Origin', '*');
-    var obj = {
-        info: filterUsers.length && filterUsers[0],
-        posts: userPosts
-    };
+    var resp = new response_1.default(200, {
+        user: filterUsers.length && filterUsers[0]
+    });
     console.log('get info');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 var getUsersHandler = function (req, res) {
     var page = parseInt(req.params && req.params.page);
@@ -28,17 +25,20 @@ var getUsersHandler = function (req, res) {
     var lastIndex = countRecordOfPage * page + countRecordOfPage - 1;
     var filterUsers = users_1.default.filter(function (item, index) { return index >= firstIndex && index <= lastIndex; });
     res.setHeader('Access-Control-Allow-Origin', '*');
-    var obj = { remainder: users_1.default.length - lastIndex - 1, users: filterUsers };
+    var resp = new response_1.default(200, {
+        remainder: users_1.default.length - lastIndex - 1,
+        users: filterUsers
+    });
     console.log('get users');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 var getAllUsersHandler = function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    var obj = { users: users_1.default };
+    var resp = new response_1.default(200, { users: users_1.default });
     console.log('get all users');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 var countRecordOfPage = 3;
 var router = express_1.default.Router();

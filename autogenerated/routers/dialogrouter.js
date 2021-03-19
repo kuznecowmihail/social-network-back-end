@@ -7,6 +7,7 @@ var express_1 = __importDefault(require("express"));
 var users_1 = __importDefault(require("../data/users"));
 var dialogs_1 = __importDefault(require("../data/dialogs"));
 var messages_1 = __importDefault(require("../data/messages"));
+var response_1 = __importDefault(require("../models/response"));
 var getDialogsHandler = function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     var customDialogs = dialogs_1.default.map(function (item) {
@@ -22,10 +23,10 @@ var getDialogsHandler = function (req, res) {
             lastMessage: lastMessage
         };
     });
-    var obj = { dialogs: customDialogs };
+    var resp = new response_1.default(200, { dialogs: customDialogs });
     console.log('get dialogs');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 var router = express_1.default.Router();
 router.get('/', getDialogsHandler);

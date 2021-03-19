@@ -1,5 +1,6 @@
 import express from 'express';
 import messages from '../data/messages';
+import ResponseObject from '../models/response';
 
 const getMessagesHandler = (req: express.Request, res: express.Response) => {
     let dialogid = parseInt(req.params && req.params.dialogid);
@@ -12,10 +13,10 @@ const getMessagesHandler = (req: express.Request, res: express.Response) => {
                 : 'companion';
             return message;
         });
-    let obj = {messages: dialogMessages};
+    let resp = new ResponseObject(200, {messages: dialogMessages});
     console.log('get messages');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 const router = express.Router();
 router.get('/:dialogid', getMessagesHandler);

@@ -2,6 +2,7 @@ import express from 'express';
 import users from '../data/users';
 import dialogs from '../data/dialogs';
 import messages from '../data/messages';
+import ResponseObject from '../models/response';
 
 const getDialogsHandler = (req: express.Request, res: express.Response) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,10 +19,10 @@ const getDialogsHandler = (req: express.Request, res: express.Response) => {
             lastMessage: lastMessage
         }
     })
-    let obj = {dialogs: customDialogs};
+    let resp = new ResponseObject(200, {dialogs: customDialogs});
     console.log('get dialogs');
-    console.log(obj);
-    res.send(obj);
+    console.log(resp);
+    res.send(resp);
 };
 const router = express.Router();
 router.get('/', getDialogsHandler);
